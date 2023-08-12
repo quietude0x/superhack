@@ -1,8 +1,15 @@
 import React, {useState} from 'react'
 import Globe from 'react-globe.gl';
 import Modal from 'react-modal';
+import styles from '../styles/Home.module.css';
+import { getNetwork } from '@wagmi/core'
 
 export default function GlobeF() {
+  
+  const { chain } = getNetwork()
+
+  console.log(chain.network);
+
 
   const [blueIsOpen, setBlueIsOpen] = useState(false);
   const [redIsOpen, setRedIsOpen] = useState(false);
@@ -133,19 +140,20 @@ const pointsData = [
     lat: 40,
     lng: -74,
     color: 'blue',
-    length: 0.5,
+    length: 10,
     radius: 1,
     onPointClick: () => {
       // Your click event handler logic here
       console.log('Blue clicked!');
       handleBlueClick();
-    }
+    },
+    pointLabel: "base"
   },
   {
     lat: 51,
     lng: -0.1,
     color: 'white',
-    length: 0.5,
+    length: 10,
     radius: 1,
     onPointClick: () => {
       // Your click event handler logic here
@@ -157,7 +165,7 @@ const pointsData = [
     lat: 35,
     lng: 40,
     color: 'red',
-    length: 0.5, 
+    length: 10,
     radius: 1,
     onPointClick: () => {
       // Your click event handler logic here
@@ -169,7 +177,7 @@ const pointsData = [
     lat: 70,
     lng: -70,
     color: 'grey',
-    length: 0.5, 
+    length: 10,
     radius: 1,
     onPointClick: () => {
       // Your click event handler logic here
@@ -179,39 +187,135 @@ const pointsData = [
   }
 ];
 
+const labelsData = [
+  {
+    lat: 40,
+    lng: -72,
+    text: 'base',
+    color: 'Blue',
+    size: 7,
+    onLabelClick: () => {
+      console.log('Blue clicked!');
+      handleBlueClick();
+    },
+  },
+  {
+    lat: 51,
+    lng: -0.1,
+    text: 'zora',
+    color: 'White',
+    size: 7,
+    onLabelClick: () => {
+      console.log('White clicked!');
+      handleWhiteClick();
+    },
+  },
+  {
+    lat: 35,
+    lng: 40,
+    text: 'optimism',
+    color: 'Red',
+    size: 7,
+    onLabelClick: () => {
+      console.log('Red clicked!');
+      handleRedClick();
+    },
+  },
+  {
+    lat: 70,
+    lng: -70,
+    text: 'ethereum',
+    color: 'Grey',
+    size: 7,
+    onLabelClick: () => {
+      console.log('Grey clicked!');
+      handleGreyClick();
+    },
+  },
+];
+
 return (
   <div>
     <Globe
     backgroundColor="rgba(0,0,0,0)"
-    //pointOfView={'40, -120, 2'}
-    //globeMaterial={{ color: 'red' }}
     arcsData={arcsData}
     arcColor={'color'}
     arcDashLength={() => Math.random()}
     arcDashGap={() => Math.random()}
     arcDashAnimateTime={() => Math.random() * 4000 + 500}
     atmosphereAltitude={0.5}
-    atmosphereColor='red'
+    atmosphereColor={"red"}
     pointsData={pointsData}
     pointColor={'color'}
     pointAltitude={'length'}
     pointRadius={'radius'}
     onPointClick={point => point.onPointClick()}
+    labelsData={labelsData}
+    labelColor={'color'}
+    labelSize={'size'}
+    onLabelClick={point => point.onLabelClick()}
     />
-    <Modal isOpen={blueIsOpen} onRequestClose={() => setBlueIsOpen(false)}>
-        {<p> base </p>}
+
+    <Modal className={styles.chainModal} isOpen={blueIsOpen} onRequestClose={() => setBlueIsOpen(false)}>
+        {
+        <>
+        <h4 className={styles.subTitle}>
+          explore base.
+        </h4>
+      <div className={styles.buttonContainer}>
+          <button className={styles.modalButton}>Bridge</button>
+          <a href="https://zora.co/collect/eth:0x6d6b3750538e7b2c890dce9a184735c9dfe8ea7f">
+            <button className={styles.modalButton} href="https://zora.co/collect/eth:0x6d6b3750538e7b2c890dce9a184735c9dfe8ea7f">Mint an NFT</button>
+          </a>
+          <button className={styles.modalButton}>Switch to this network</button>
+      </div>
+      </>
+        }
     </Modal>
 
-    <Modal isOpen={redIsOpen} onRequestClose={() => setRedIsOpen(false)}>
-        {<p> op </p>}
+    <Modal className={styles.chainModal} isOpen={redIsOpen} onRequestClose={() => setRedIsOpen(false)}>
+        {
+        <>
+        <h4 className={styles.subTitle}>
+          explore optimism.
+        </h4>
+      <div className={styles.buttonContainer}>
+          <button className={styles.modalButton}>Bridge</button>
+          <button className={styles.modalButton}>Mint an NFT</button>
+          <button className={styles.modalButton}>Switch to this network</button>
+      </div>
+      </>
+        }
     </Modal>
 
-    <Modal isOpen={whiteIsOpen} onRequestClose={() => setWhiteIsOpen(false)}>
-        {<p> zora </p>}
+    <Modal className={styles.chainModal} isOpen={whiteIsOpen} onRequestClose={() => setWhiteIsOpen(false)}>
+        {
+        <>
+          <h4 className={styles.subTitle}>
+            explore zora network.
+          </h4>
+        <div className={styles.buttonContainer}>
+            <button className={styles.modalButton}>Bridge</button>
+            <button className={styles.modalButton}>Mint an NFT</button>
+            <button className={styles.modalButton}>Switch to this network</button>
+        </div>
+        </>
+        }
     </Modal>
 
-    <Modal isOpen={greyIsOpen} onRequestClose={() => setGreyIsOpen(false)}>
-        {<p> grey </p>}
+    <Modal className={styles.chainModal} isOpen={greyIsOpen} onRequestClose={() => setGreyIsOpen(false)}>
+        {
+        <>
+        <h4 className={styles.subTitle}>
+          explore ethereum.
+        </h4>
+      <div className={styles.buttonContainer}>
+          <button className={styles.modalButton}>Bridge</button>
+          <button className={styles.modalButton}>Mint an NFT</button>
+          <button className={styles.modalButton}>Switch to this network</button>
+      </div>
+      </>
+        }
     </Modal>
     </div>
 );
