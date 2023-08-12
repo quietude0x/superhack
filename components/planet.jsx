@@ -14,12 +14,13 @@ export default function GlobeF() {
 
 return (
     <Globe
-    backgroundColor="#FFFFFF" 
+    backgroundColor="rgba(0,0,0,0)"
     arcsData={arcsData}
     arcColor={'color'}
     arcDashLength={() => Math.random()}
     arcDashGap={() => Math.random()}
     arcDashAnimateTime={() => Math.random() * 4000 + 500}
+    atmosphereAltitude="0.15"
     />
 );
 

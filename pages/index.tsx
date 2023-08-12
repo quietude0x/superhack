@@ -12,6 +12,7 @@ const DynamicGlobe = dynamic(() => import('../components/planet'), {
 })
 
 const Home: NextPage = () => {
+
   return (
     
     <div className={styles.container}>
@@ -28,7 +29,7 @@ const Home: NextPage = () => {
         <ConnectButton />
 
         <h1 className={styles.title}>
-          welcome to superchain explorer
+        explore the superchain.
         </h1>
 
         <DynamicGlobe />
