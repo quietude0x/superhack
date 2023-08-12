@@ -2,8 +2,14 @@ import { ConnectButton } from '@rainbow-me/rainbowkit';
 import type { NextPage } from 'next';
 import Head from 'next/head';
 import styles from '../styles/Home.module.css';
-import { symlink } from 'fs';
-import Globe from '../components/globe.js';
+//import Globe from '../components/globe.js';
+//import GlobeF from '../components/planet.jsx';
+import dynamic from 'next/dynamic'
+
+const DynamicGlobe = dynamic(() => import('../components/planet'), {
+  ssr: false,
+  loading: () => <p>Loading...</p>,
+})
 
 const Home: NextPage = () => {
   return (
@@ -25,8 +31,7 @@ const Home: NextPage = () => {
           welcome to superchain explorer
         </h1>
 
-
-        <Globe />
+        <DynamicGlobe />
 
       </main>
 
