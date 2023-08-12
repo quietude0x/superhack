@@ -2,5 +2,10 @@
 
 - [x] : add differents points who are different chains
 - [x] : add arcs from specifics points
-- [ ] : add interactions from the points (bridge, mint nfts)
-- [ ] : get stats ? 
+- [x] : add interactions from the points
+  - [x] : onclick on a chain base, open a dialogue with some options : 
+    - [ ] bridge
+    - [ ] mint nfts
+    - [ ] switch to this networks 
+    - ? 
+- [ ] : get stats ?

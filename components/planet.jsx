@@ -1,18 +1,29 @@
-import React from 'react'
+import React, {useState} from 'react'
 import Globe from 'react-globe.gl';
+import Modal from 'react-modal';
 
 export default function GlobeF() {
 
-  /*
-  const N = 20;
-  const aarcsData = [...Array(N).keys()].map(() => ({
-    startLat: (Math.random() - 0.5) * 180,
-    startLng: (Math.random() - 0.5) * 360,
-    endLat: (Math.random() - 0.5) * 180,
-    endLng: (Math.random() - 0.5) * 360,
-    color: [['red', 'white', 'blue'][Math.round(Math.random() * 3)], ['red', 'white', 'blue', 'green'][Math.round(Math.random() * 3)]]
-  }));
-  */
+  const [blueIsOpen, setBlueIsOpen] = useState(false);
+  const [redIsOpen, setRedIsOpen] = useState(false);
+  const [greyIsOpen, setGreyIsOpen] = useState(false);
+  const [whiteIsOpen, setWhiteIsOpen] = useState(false);
+
+  const handleBlueClick = () => {
+    setBlueIsOpen(true);
+  };
+
+  const handleRedClick = () => {
+    setRedIsOpen(true);
+  };
+
+  const handleGreyClick = () => {
+    setGreyIsOpen(true);
+  };
+
+  const handleWhiteClick = () => {
+    setWhiteIsOpen(true);
+  };
 
   const arcsData = [
     {
@@ -117,39 +128,59 @@ export default function GlobeF() {
   
   ];
 
-
 const pointsData = [
   {
     lat: 40,
     lng: -74,
     color: 'blue',
     length: 0.5,
-    radius: 1
+    radius: 1,
+    onPointClick: () => {
+      // Your click event handler logic here
+      console.log('Blue clicked!');
+      handleBlueClick();
+    }
   },
   {
     lat: 51,
     lng: -0.1,
     color: 'white',
     length: 0.5,
-    radius: 1
+    radius: 1,
+    onPointClick: () => {
+      // Your click event handler logic here
+      console.log('White clicked!');
+      handleWhiteClick();
+    }
   },
   {
     lat: 35,
     lng: 40,
     color: 'red',
     length: 0.5, 
-    radius: 1
+    radius: 1,
+    onPointClick: () => {
+      // Your click event handler logic here
+      console.log('Red clicked!');
+      handleRedClick();
+    }
   },
  {
     lat: 70,
     lng: -70,
     color: 'grey',
     length: 0.5, 
-    radius: 1
+    radius: 1,
+    onPointClick: () => {
+      // Your click event handler logic here
+      console.log('Grey clicked!');
+      handleGreyClick();
+    }
   }
 ];
 
 return (
+  <div>
     <Globe
     backgroundColor="rgba(0,0,0,0)"
     //pointOfView={'40, -120, 2'}
@@ -165,7 +196,24 @@ return (
     pointColor={'color'}
     pointAltitude={'length'}
     pointRadius={'radius'}
+    onPointClick={point => point.onPointClick()}
     />
+    <Modal isOpen={blueIsOpen} onRequestClose={() => setBlueIsOpen(false)}>
+        {<p> base </p>}
+    </Modal>
+
+    <Modal isOpen={redIsOpen} onRequestClose={() => setRedIsOpen(false)}>
+        {<p> op </p>}
+    </Modal>
+
+    <Modal isOpen={whiteIsOpen} onRequestClose={() => setWhiteIsOpen(false)}>
+        {<p> zora </p>}
+    </Modal>
+
+    <Modal isOpen={greyIsOpen} onRequestClose={() => setGreyIsOpen(false)}>
+        {<p> grey </p>}
+    </Modal>
+    </div>
 );
 
 }
