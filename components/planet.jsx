@@ -137,7 +137,7 @@ const pointsData = [
     lng: -74,
     color: 'blue',
     length: 10,
-    radius: 1,
+    radius: 2,
     onPointClick: () => {
       console.log('Blue clicked!');
       handleBlueClick();
@@ -149,7 +149,7 @@ const pointsData = [
     lng: -0.1,
     color: 'white',
     length: 10,
-    radius: 1,
+    radius: 2,
     onPointClick: () => {
       console.log('White clicked!');
       handleWhiteClick();
@@ -160,7 +160,7 @@ const pointsData = [
     lng: 40,
     color: 'red',
     length: 10,
-    radius: 1,
+    radius: 2,
     onPointClick: () => {
       console.log('Red clicked!');
       handleRedClick();
@@ -171,7 +171,7 @@ const pointsData = [
     lng: -70,
     color: 'grey',
     length: 10,
-    radius: 1,
+    radius: 2,
     onPointClick: () => {
       console.log('Grey clicked!');
       handleGreyClick();
@@ -263,9 +263,9 @@ return (
         </p>
 
       <div className={styles.buttonContainer}>
-          <button className={styles.modalButton}>Bridge</button>
+          <a href="https://bridge.base.org/deposit" target="_blank" rel="noopener noreferrer"> <button className={styles.modalButton}>Bridge</button> </a>
           <a href="https://zora.co/collect/eth:0x6d6b3750538e7b2c890dce9a184735c9dfe8ea7f" target="_blank" rel="noopener noreferrer">
-            <button className={styles.modalButton} >Mint an NFT</button>
+            <button className={styles.modalButton} >Mint a nft</button>
           </a>
           <button className={styles.modalButton}>Switch to this network</button>
       </div>
@@ -285,7 +285,7 @@ return (
         </p>
       <div className={styles.buttonContainer}>
           <a href="https://app.optimism.io/bridge/deposit" target="_blank" rel="noopener noreferrer"> <button className={styles.modalButton}>Bridge</button> </a>
-          <button className={styles.modalButton}>Mint an NFT</button>
+          <a href="https://www.optimism.io/apps/nfts" target="_blank" rel="noopener noreferrer"> <button className={styles.modalButton}>Mint a nft</button> </a>
           <button className={styles.modalButton}>Switch to this network</button>
       </div>
       </>
@@ -304,8 +304,8 @@ return (
           Many L2s are currently DeFi centric whereas the Zora Network is an ecosystem that puts NFTs first.
           </p>
         <div className={styles.buttonContainer}>
-            <button className={styles.modalButton}>Bridge</button>
-            <a> <button className={styles.modalButton}>Mint an NFT</button> </a>
+            <a href="https://bridge.zora.energy/" target="_blank" rel="noopener noreferrer"> <button className={styles.modalButton}>Bridge</button> </a>
+            <a href="https://zora.co/trending" target="_blank" rel="noopener noreferrer"> <button className={styles.modalButton}>Mint a nft</button> </a>
             <button className={styles.modalButton}>Switch to this network</button>
         </div>
         </>
@@ -320,13 +320,13 @@ return (
         </h4>
 
         <p>
-        Ethereum is one of the most secure, decentralized and robust blockchain.
+        <span className={styles.grey}> Ethereum </span> is one of the most secure, decentralized and robust blockchain.
         Each transaction in the superchain ecosystem is recorded and safeguarded on the Ethereum blockchain, ensuring unparalleled safety and reliability. 
         </p>
 
       <div className={styles.buttonContainer}>
-          <button className={styles.modalButton}>Bridge</button>
-          <a href="https://zora.co/feed" target="_blank" rel="noopener noreferrer"> <button className={styles.modalButton}>Mint an NFT</button> </a>
+          <a href="https://zora.co/feed" target="_blank" rel="noopener noreferrer"> <button className={styles.modalButton}>Mint a nft</button> </a>
+          <a href="https://ethereum.org/" target='_blank' rel="noopener noreferrer"> <button className={styles.modalButton}> ethereum.org </button> </a>
           <button className={styles.modalButton}>Switch to this network</button>
       </div>
       </>
