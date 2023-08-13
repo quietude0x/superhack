@@ -33,7 +33,7 @@ const { chains, publicClient, webSocketPublicClient } = configureChains(
 
 const { connectors } = getDefaultWallets({
   appName: 'superchain explorer',
-  projectId: 'YOUR_PROJECT_ID',
+  projectId: 'YOUR_PROJECTll_ID',
   chains,
 });
 

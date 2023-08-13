@@ -2,14 +2,10 @@ import React, {useState} from 'react'
 import Globe from 'react-globe.gl';
 import Modal from 'react-modal';
 import styles from '../styles/Home.module.css';
-//import { getNetwork } from '@wagmi/core'
+import { getNetwork, switchNetwork } from '@wagmi/core'
 
 export default function GlobeF() {
   
-  //const { chain } = getNetwork()
-  //console.log(chain.network);
-
-
   const [blueIsOpen, setBlueIsOpen] = useState(false);
   const [redIsOpen, setRedIsOpen] = useState(false);
   const [greyIsOpen, setGreyIsOpen] = useState(false);
@@ -39,7 +35,8 @@ export default function GlobeF() {
       endLng: -70,
       color: 'red',
       strokeWidth: 1,
-      curveResolution: 30
+      curveResolution: 30,
+      arcAltitudeAutoScale: 1
     },
     {
       startLat: 35,
@@ -47,7 +44,7 @@ export default function GlobeF() {
       endLat: 40,
       endLng: -74,
       color: 'red',
-      strokeWidth: 1,
+      strokeWidth: 0.1,
       curveResolution: 30
     },
     {
@@ -56,7 +53,7 @@ export default function GlobeF() {
       endLat: 70,
       endLng: -70,
       color: 'blue',
-      strokeWidth: 2,
+      strokeWidth: 1,
       curveResolution: 60
     },
     {
@@ -65,7 +62,7 @@ export default function GlobeF() {
       endLat: 35,
       endLng: 40,
       color: 'blue',
-      strokeWidth: 2,
+      strokeWidth: 0.1,
       curveResolution: 60
     },
    {
@@ -74,7 +71,7 @@ export default function GlobeF() {
       endLat: 51,
       endLng: -0.1,
       color: 'blue',
-      strokeWidth: 2,
+      strokeWidth: 0.1,
       curveResolution: 60
     },
     {
@@ -83,7 +80,7 @@ export default function GlobeF() {
       endLat: 70,
       endLng: -70,
       color: 'white',
-      strokeWidth: 2,
+      strokeWidth: 1,
       curveResolution: 60
     },
     {
@@ -92,7 +89,7 @@ export default function GlobeF() {
       endLat: 40,
       endLng: -74,
       color: 'white',
-      strokeWidth: 2,
+      strokeWidth: 0.1,
       curveResolution: 60
     },
     {
@@ -101,7 +98,7 @@ export default function GlobeF() {
       endLat: 35,
       endLng: 40,
       color: 'white',
-      strokeWidth: 2,
+      strokeWidth: 0.1,
       curveResolution: 60
     },
      {
@@ -110,7 +107,7 @@ export default function GlobeF() {
       endLat: 50,
       endLng: -0.1,
       color: 'grey',
-      strokeWidth: 2,
+      strokeWidth: 0.3,
       curveResolution: 60
     },
     {
@@ -119,7 +116,7 @@ export default function GlobeF() {
       endLat: 40,
       endLng: -74,
       color: 'grey',
-      strokeWidth: 2,
+      strokeWidth: 0.3,
       curveResolution: 60
     },
     {
@@ -128,7 +125,7 @@ export default function GlobeF() {
       endLat: 35,
       endLng: 40,
       color: 'grey',
-      strokeWidth: 2,
+      strokeWidth: 0.3,
       curveResolution: 60
     }, 
   
@@ -142,7 +139,6 @@ const pointsData = [
     length: 10,
     radius: 1,
     onPointClick: () => {
-      // Your click event handler logic here
       console.log('Blue clicked!');
       handleBlueClick();
     },
@@ -155,7 +151,6 @@ const pointsData = [
     length: 10,
     radius: 1,
     onPointClick: () => {
-      // Your click event handler logic here
       console.log('White clicked!');
       handleWhiteClick();
     }
@@ -167,7 +162,6 @@ const pointsData = [
     length: 10,
     radius: 1,
     onPointClick: () => {
-      // Your click event handler logic here
       console.log('Red clicked!');
       handleRedClick();
     }
@@ -179,7 +173,6 @@ const pointsData = [
     length: 10,
     radius: 1,
     onPointClick: () => {
-      // Your click event handler logic here
       console.log('Grey clicked!');
       handleGreyClick();
     }
@@ -241,7 +234,9 @@ return (
     arcColor={'color'}
     arcDashLength={() => Math.random()}
     arcDashGap={() => Math.random()}
-    arcDashAnimateTime={() => Math.random() * 4000 + 500}
+    arcDashAnimateTime={() => Math.random() * 4000 + 2000}
+    arcStroke={'strokeWidth'}
+    arcAltitudeAutoScale={() => 0.1 + Math.random() * 0.9}
     atmosphereAltitude={0.5}
     atmosphereColor={"red"}
     pointsData={pointsData}
@@ -255,16 +250,22 @@ return (
     onLabelClick={point => point.onLabelClick()}
     />
 
-    <Modal className={styles.chainModal} isOpen={blueIsOpen} onRequestClose={() => setBlueIsOpen(false)}>
+    <Modal className={styles.chainModal} isOpen={blueIsOpen} onRequestClose={() => setBlueIsOpen(false)} ariaHideApp={false}>
         {
         <>
+        
         <h4 className={styles.subTitle}>
           explore base.
         </h4>
+
+        <p>
+        Base is a secure, low-cost, builder-friendly <span className={styles.grey}> ethereum </span> layer 2 built to bring the next billion users onchain.
+        </p>
+
       <div className={styles.buttonContainer}>
           <button className={styles.modalButton}>Bridge</button>
-          <a href="https://zora.co/collect/eth:0x6d6b3750538e7b2c890dce9a184735c9dfe8ea7f">
-            <button className={styles.modalButton} href="https://zora.co/collect/eth:0x6d6b3750538e7b2c890dce9a184735c9dfe8ea7f">Mint an NFT</button>
+          <a href="https://zora.co/collect/eth:0x6d6b3750538e7b2c890dce9a184735c9dfe8ea7f" target="_blank" rel="noopener noreferrer">
+            <button className={styles.modalButton} >Mint an NFT</button>
           </a>
           <button className={styles.modalButton}>Switch to this network</button>
       </div>
@@ -272,14 +273,18 @@ return (
         }
     </Modal>
 
-    <Modal className={styles.chainModal} isOpen={redIsOpen} onRequestClose={() => setRedIsOpen(false)}>
+    <Modal className={styles.chainModal} isOpen={redIsOpen} onRequestClose={() => setRedIsOpen(false)} ariaHideApp={false}>
         {
         <>
         <h4 className={styles.subTitle}>
           explore optimism.
         </h4>
+
+        <p>
+        Optimism mainnet is a low-cost and lightning-fast <span className={styles.grey}> ethereum </span> layer 2 powered by Optimism.
+        </p>
       <div className={styles.buttonContainer}>
-          <button className={styles.modalButton}>Bridge</button>
+          <a href="https://app.optimism.io/bridge/deposit" target="_blank" rel="noopener noreferrer"> <button className={styles.modalButton}>Bridge</button> </a>
           <button className={styles.modalButton}>Mint an NFT</button>
           <button className={styles.modalButton}>Switch to this network</button>
       </div>
@@ -287,30 +292,41 @@ return (
         }
     </Modal>
 
-    <Modal className={styles.chainModal} isOpen={whiteIsOpen} onRequestClose={() => setWhiteIsOpen(false)}>
+    <Modal className={styles.chainModal} isOpen={whiteIsOpen} onRequestClose={() => setWhiteIsOpen(false)} ariaHideApp={false}>
         {
         <>
           <h4 className={styles.subTitle}>
             explore zora network.
           </h4>
+
+          <p>
+          the Zora Network is a fast, cost-efficient, and scalable <span className={styles.grey}> ethereum </span> layer 2 built to help bring media onchain. 
+          Many L2s are currently DeFi centric whereas the Zora Network is an ecosystem that puts NFTs first.
+          </p>
         <div className={styles.buttonContainer}>
             <button className={styles.modalButton}>Bridge</button>
-            <button className={styles.modalButton}>Mint an NFT</button>
+            <a> <button className={styles.modalButton}>Mint an NFT</button> </a>
             <button className={styles.modalButton}>Switch to this network</button>
         </div>
         </>
         }
     </Modal>
 
-    <Modal className={styles.chainModal} isOpen={greyIsOpen} onRequestClose={() => setGreyIsOpen(false)}>
+    <Modal className={styles.chainModal} isOpen={greyIsOpen} onRequestClose={() => setGreyIsOpen(false)} ariaHideApp={false}>
         {
         <>
         <h4 className={styles.subTitle}>
           explore ethereum.
         </h4>
+
+        <p>
+        Ethereum is one of the most secure, decentralized and robust blockchain.
+        Each transaction in the superchain ecosystem is recorded and safeguarded on the Ethereum blockchain, ensuring unparalleled safety and reliability. 
+        </p>
+
       <div className={styles.buttonContainer}>
           <button className={styles.modalButton}>Bridge</button>
-          <button className={styles.modalButton}>Mint an NFT</button>
+          <a href="https://zora.co/feed" target="_blank" rel="noopener noreferrer"> <button className={styles.modalButton}>Mint an NFT</button> </a>
           <button className={styles.modalButton}>Switch to this network</button>
       </div>
       </>
