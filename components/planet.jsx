@@ -2,13 +2,12 @@ import React, {useState} from 'react'
 import Globe from 'react-globe.gl';
 import Modal from 'react-modal';
 import styles from '../styles/Home.module.css';
-import { getNetwork } from '@wagmi/core'
+//import { getNetwork } from '@wagmi/core'
 
 export default function GlobeF() {
   
-  const { chain } = getNetwork()
-
-  console.log(chain.network);
+  //const { chain } = getNetwork()
+  //console.log(chain.network);
 
 
   const [blueIsOpen, setBlueIsOpen] = useState(false);
